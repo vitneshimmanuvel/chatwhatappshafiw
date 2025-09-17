@@ -2,8 +2,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { Low, JSONFile } = require('lowdb');
-const path = require('path');
+const { JSONFilePreset } = require('lowdb/node');
 
 // --------- Google Sheets Setup ----------
 const SHEET_ID = '1AcgkJrU7M4u943Pj8KbCdK3UX-najLdEzNlVVfnYwBc'; // Your Sheet ID
@@ -39,14 +38,12 @@ async function saveToSheets(data) {
 }
 
 // --------- Local DB Setup ----------
-const dbFile = path.join(__dirname, 'users.json');
-const adapter = new JSONFile(dbFile);
-const db = new Low(adapter);
+let db;
 
 async function initDB() {
-  await db.read();
-  db.data = db.data || { users: {} };
-  await db.write();
+  const defaultData = { users: {} };
+  db = await JSONFilePreset('users.json', defaultData);
+  console.log('✅ Local database initialized');
 }
 
 // --------- WhatsApp Client Setup ----------
