@@ -5,7 +5,8 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JSONFilePreset } = require('lowdb/node');
 
 // --------- Google Sheets Setup ----------
-const SHEET_ID = '1AcgkJrU7M4u943Pj8KbCdK3UX-najLdEzNlVVfnYwBc'; // Your Sheet ID
+const deleltt = "sumaa";
+const SHEET_ID = '1AcgkJrU7M4u943Pj8KbCdK3UX-najLdEzNlVVfnYwBc'; 
 const doc = new GoogleSpreadsheet(SHEET_ID);
 
 async function initSheets() {
